@@ -1,0 +1,26 @@
+{
+  "name": "bootstrap-cap",
+  "version": "1.0.0",
+  "description": "Plugin to replace window.confirm, window.alert, and window.prompt with bootstrap modals. Requires jQuery and Bootstrap 3.x",
+  "main": "",
+  "scripts": {
+    "babel": "babel src --out-dir build --presets es2015-loose",
+    "copy": "copyfiles -f build/*.js dist",
+    "uglify": "uglifyjs build/bootstrap-cap.js -o dist/bootstrap-cap.min.js",
+    "build": "npm run babel && npm run copy && npm run uglify"
+  },
+  "keywords": [
+    "bootstrap",
+    "jquery",
+    "modal"
+  ],
+  "author": "neilsimp1",
+  "license": "",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.7.5",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "uglify-js": "^2.6.2"
+  }
+}
