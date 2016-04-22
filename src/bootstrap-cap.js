@@ -20,33 +20,49 @@ class BSCAP{
 		this.$bscap = $('#bscap');
 	}
 	
-	confirm(text, callback){
+	confirm(text, title, callback){
+		let doTitle = true;
+		if(callback === undefined){
+			callback = title;
+			doTitle = false;
+		}
+		
 		let $bscap = this.$bscap;
 		
-		$bscap.find('.modal-body').html(text);		
+		$bscap.find('.modal-title').html(doTitle? title: '');
+		$bscap.find('.modal-body').html(text);	
 		$bscap.find('.bscap-no').show().one('click', function(){callback(false);});
 		$bscap.find('.bscap-yes').one('click', function(){callback(true);});
 		$bscap.find('.bscap-no, .bscap-yes').one('click', function(){$bscap.modal('hide');});
 		$bscap.modal('show');
 	}
 	
-	alert(text, callback){
+	alert(text, title, callback){
+		let doTitle = true;
+		if(callback === undefined){
+			callback = title;
+			doTitle = false;
+		}
+		
 		let $bscap = this.$bscap;
 		
-		$bscap.find('.modal-body').html(text);		
+		$bscap.find('.modal-title').html(doTitle? title: '');
+		$bscap.find('.modal-body').html(text);
 		$bscap.find('.bscap-no').hide();
 		$bscap.find('.bscap-yes').one('click', function(){$bscap.modal('hide');callback();});
 		$bscap.modal('show');
 	}
 	
-	// prompt(text, callback){
-		// let $bscap = this.$bscap;
+	prompt(text, callback){
+		if(callback === undefined) callback = title;
 		
-		// $bscap.find('.modal-body').html(text);		
-		// $bscap.find('.bscap-no').hide();
-		// $bscap.find('.bscap-yes').one('click', function(){$bscap.modal('hide');callback();});
-		// $bscap.modal('show');
-	// }
+		let $bscap = this.$bscap;
+		
+		$bscap.find('.modal-body').html(text);
+		$bscap.find('.bscap-no').hide();
+		$bscap.find('.bscap-yes').one('click', function(){$bscap.modal('hide');callback();});
+		$bscap.modal('show');
+	}
 	
 }
 

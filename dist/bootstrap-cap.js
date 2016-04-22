@@ -23,9 +23,16 @@ var BSCAP = function () {
 		this.$bscap = $('#bscap');
 	}
 
-	BSCAP.prototype.confirm = function confirm(text, callback) {
+	BSCAP.prototype.confirm = function confirm(text, title, callback) {
+		var doTitle = true;
+		if (callback === undefined) {
+			callback = title;
+			doTitle = false;
+		}
+
 		var $bscap = this.$bscap;
 
+		$bscap.find('.modal-title').html(doTitle ? title : '');
 		$bscap.find('.modal-body').html(text);
 		$bscap.find('.bscap-no').show().one('click', function () {
 			callback(false);
@@ -39,9 +46,16 @@ var BSCAP = function () {
 		$bscap.modal('show');
 	};
 
-	BSCAP.prototype.alert = function alert(text, callback) {
+	BSCAP.prototype.alert = function alert(text, title, callback) {
+		var doTitle = true;
+		if (callback === undefined) {
+			callback = title;
+			doTitle = false;
+		}
+
 		var $bscap = this.$bscap;
 
+		$bscap.find('.modal-title').html(doTitle ? title : '');
 		$bscap.find('.modal-body').html(text);
 		$bscap.find('.bscap-no').hide();
 		$bscap.find('.bscap-yes').one('click', function () {
@@ -51,9 +65,11 @@ var BSCAP = function () {
 	};
 
 	// prompt(text, callback){
+	// if(callback === undefined) callback = title;
+
 	// let $bscap = this.$bscap;
 
-	// $bscap.find('.modal-body').html(text);		
+	// $bscap.find('.modal-body').html(text);
 	// $bscap.find('.bscap-no').hide();
 	// $bscap.find('.bscap-yes').one('click', function(){$bscap.modal('hide');callback();});
 	// $bscap.modal('show');
