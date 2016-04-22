@@ -33,7 +33,7 @@ var BSCAP = function () {
 		var $bscap = this.$bscap;
 
 		$bscap.find('.modal-title').html(doTitle ? title : '');
-		$bscap.find('.modal-body').html(text);
+		$bscap.find('.modal-body').html(this.addPTag(text));
 		$bscap.find('.bscap-no').show().one('click', function () {
 			callback(false);
 		});
@@ -56,7 +56,7 @@ var BSCAP = function () {
 		var $bscap = this.$bscap;
 
 		$bscap.find('.modal-title').html(doTitle ? title : '');
-		$bscap.find('.modal-body').html(text);
+		$bscap.find('.modal-body').html(this.addPTag(text));
 		$bscap.find('.bscap-no').hide();
 		$bscap.find('.bscap-yes').one('click', function () {
 			$bscap.modal('hide');callback();
@@ -64,16 +64,33 @@ var BSCAP = function () {
 		$bscap.modal('show');
 	};
 
-	// prompt(text, callback){
-	// if(callback === undefined) callback = title;
+	BSCAP.prototype.prompt = function prompt(text, title, callback) {
+		var doTitle = true;
+		if (callback === undefined) {
+			callback = title;
+			doTitle = false;
+		}
 
-	// let $bscap = this.$bscap;
+		var $bscap = this.$bscap;
+		var $input = $('<input type="text" class="form-control" />'),
+		    $textDiv = $('<div class="col-xs-12">'),
+		    $containerDiv = $('<div class="container-fluid">');
+		$textDiv.append($input);
+		$containerDiv.append($textDiv);
 
-	// $bscap.find('.modal-body').html(text);
-	// $bscap.find('.bscap-no').hide();
-	// $bscap.find('.bscap-yes').one('click', function(){$bscap.modal('hide');callback();});
-	// $bscap.modal('show');
-	// }
+		$bscap.find('.modal-title').html(doTitle ? title : '');
+		$bscap.find('.modal-body').html(this.addPTag(text)).append($containerDiv);
+		$bscap.find('.bscap-no').hide();
+		$bscap.find('.bscap-yes').one('click', function () {
+			$bscap.modal('hide');
+			callback($bscap.find('.form-control').val());
+		});
+		$bscap.modal('show');
+	};
+
+	BSCAP.prototype.addPTag = function addPTag(text) {
+		return '<p>' + text + '</p>';
+	};
 
 	return BSCAP;
 }();
