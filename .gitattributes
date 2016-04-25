@@ -1,2 +1,3 @@
 src/* linguist-vendored=false
 dist/* linguist-vendored=false
+example/* linguist-vendored=true
