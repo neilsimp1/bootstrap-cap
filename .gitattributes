@@ -1,2 +1,2 @@
-src/* linguist-language=false
-dist/* linguist-language=false
+src/* linguist-vendored=false
+dist/* linguist-vendored=false
