@@ -1,1 +1,2 @@
-*/* linguist-language=false
+src/* linguist-language=false
+dist/* linguist-language=false
