@@ -21,6 +21,8 @@ class BSCAP{
 	}
 	
 	confirm(text, title, callback){
+		this.unbind();
+		
 		let doTitle = true;
 		if(callback === undefined){
 			callback = title;
@@ -37,7 +39,9 @@ class BSCAP{
 		$bscap.modal('show');
 	}
 	
-	alert(text, title, callback){
+	alert(text, title, callback){		
+		this.unbind();
+		
 		let doTitle = true;
 		if(callback === undefined){
 			callback = title;
@@ -54,13 +58,15 @@ class BSCAP{
 	}
 	
 	prompt(text, title, callback){
+		this.unbind();
+		
 		let doTitle = true;
 		if(callback === undefined){
 			callback = title;
 			doTitle = false;
 		}
 		
-		let $bscap = this.$bscap;
+		let $bscap = this.$bscap;		
 		let $input = $('<input type="text" class="form-control" />')
 			, $textDiv = $('<div class="col-xs-12">')
 			, $containerDiv = $('<div class="container-fluid">');
@@ -79,6 +85,10 @@ class BSCAP{
 	
 	addPTag(text){
 		return '<p>' + text + '</p>';
+	}
+	
+	unbind(){
+		this.$bscap.find('.bscap-yes, .bscap-no').off('click');
 	}
 }
 

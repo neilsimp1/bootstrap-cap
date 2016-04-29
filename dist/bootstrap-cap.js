@@ -24,6 +24,8 @@ var BSCAP = function () {
 	}
 
 	BSCAP.prototype.confirm = function confirm(text, title, callback) {
+		this.unbind();
+
 		var doTitle = true;
 		if (callback === undefined) {
 			callback = title;
@@ -47,6 +49,8 @@ var BSCAP = function () {
 	};
 
 	BSCAP.prototype.alert = function alert(text, title, callback) {
+		this.unbind();
+
 		var doTitle = true;
 		if (callback === undefined) {
 			callback = title;
@@ -65,6 +69,8 @@ var BSCAP = function () {
 	};
 
 	BSCAP.prototype.prompt = function prompt(text, title, callback) {
+		this.unbind();
+
 		var doTitle = true;
 		if (callback === undefined) {
 			callback = title;
@@ -90,6 +96,10 @@ var BSCAP = function () {
 
 	BSCAP.prototype.addPTag = function addPTag(text) {
 		return '<p>' + text + '</p>';
+	};
+
+	BSCAP.prototype.unbind = function unbind() {
+		this.$bscap.find('.bscap-yes, .bscap-no').off('click');
 	};
 
 	return BSCAP;
