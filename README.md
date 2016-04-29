@@ -71,7 +71,7 @@ function doTheThing(){
 }
 ```
 
-#####bsCAP.alert()
+#####bsCAP.prompt()
 ```javascript
 function doTheThing(){
 	bsCAP.prompt('How many things did you want to do?', function(howMany){
